@@ -15,6 +15,19 @@
 
 ---
 
+## Technical Conventions
+
+These apply across every implementation:
+
+- **IDs** — All resource IDs are ULIDs
+- **Monetary amounts** — Stored as integers in the smallest currency unit (e.g. pesewas, cents). Never floats.
+- **Multi-currency** — Every monetary field carries a `currency_code` (ISO 4217). Conversion happens at read time using historical exchange rates, never at write time.
+- **Database schema** — All backends must implement schemas in Third Normal Form (3NF). No redundant storage of derivable data.
+- **HTTP status codes** — `201` for creation, `200` for reads/updates/deletes, `422` for validation errors
+- **Error shape** — All errors return `{ code, message, errors? }`. See the Auth Module document for the full error code list.
+
+---
+
 ## Feature Scope
 
 | Module | Description |
@@ -99,6 +112,10 @@ Reports are derived — they are queries over TransactionLines grouped by Accoun
 - [ ] Build login page
 - [ ] Write tests for registration form validation
 - [ ] Build registration page
+- [ ] Write tests for forgot-password form
+- [ ] Build forgot-password page
+- [ ] Write tests for reset-password form (token + new password)
+- [ ] Build reset-password page
 - [ ] Implement auth state in Pinia (isLoggedIn, currentUser)
 - [ ] Implement protected route guards
 
@@ -150,8 +167,10 @@ Reports are derived — they are queries over TransactionLines grouped by Accoun
 **Authentication (TDD)**
 - [ ] Write tests for POST /auth/register
 - [ ] Write tests for POST /auth/login
+- [ ] Write tests for POST /auth/forgot-password
+- [ ] Write tests for POST /auth/reset-password
 - [ ] Implement JWT-based auth middleware
-- [ ] Implement register and login routes
+- [ ] Implement all auth routes
 
 **Accounts (TDD)**
 - [ ] Write tests for CRUD routes
