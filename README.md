@@ -70,6 +70,7 @@ Reports are derived — they are queries over TransactionLines grouped by Accoun
 | 5 | Angular | 🔲 Not started |
 | 6 | Kotlin (Compose / KMP) | 🔲 Not started |
 | 7 | Swift (SwiftUI) | 🔲 Not started |
+| 8 | Flutter | 🔲 Not started |
 
 ### Backend
 | # | Stack | Status |

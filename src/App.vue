@@ -1,11 +1,13 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <RouterView class="w-app__main" />
 </template>
 
-<style scoped></style>
+<style>
+.w-app__main {
+  container: app-main / inline-size;
+  grid-area: main;
+  min-block-size: 100vb;
+}
+</style>
