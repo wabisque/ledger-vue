@@ -3,6 +3,7 @@ import LoginView from '@/views/LoginView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
 import RegisterView from '@/views/RegisterView.vue';
 import AuthView from '@/views/AuthView.vue';
+import DashboardView from '@/views/DashboardView.vue';
 
 export default [
   {
@@ -42,5 +43,6 @@ export default [
       },
     ],
   },
+  { path: '/', name: 'dashboard', component: DashboardView },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundView },
 ] as RouteRecordRaw[];

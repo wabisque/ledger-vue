@@ -26,10 +26,15 @@ function backspace() {
   adjust(value);
 }
 
+function blur() {
+  inputRefs.value?.forEach(ref => ref.removeAttribute('tabindex'));
+}
+
 function focus() {
   const index = Math.max(Math.min(model.value.length, props.length - 1), 0);
 
   inputRefs.value?.[index]?.focus();
+  inputRefs.value?.forEach(ref => ref.tabIndex = -1);
 }
 
 function input() {
@@ -44,7 +49,7 @@ function input() {
 }
 
 watch(model, () => {
-  if (inputRefs.value?.includes((document.activeElement as HTMLInputElement)))
+  if (inputRefs.value?.includes(document.activeElement as HTMLInputElement))
     focus();
 });
 </script>
@@ -53,8 +58,9 @@ watch(model, () => {
   <div class="w-token-field" :style="{ '--_value-length': length }">
     <label class="label" @click="focus" v-if="label">{{ label }}</label>
     <input type="text" class="input" ref="inputs" :key="index" autocomplete="one-time-code webauthn"
-      :value="model[index]" @focus.prevent="focus" @input.prevent="input" @keydown.backspace.delete="backspace"
-      v-for="(,index) in length">
+      :style="{ '--_grid-column': it }" :value="model[index]" @focus.prevent="focus" @blur="blur" @input.prevent="input"
+      @keydown.backspace.delete="backspace" v-for="(it, index) in length">
+      <span class="outline" />
   </div>
 </template>
 
@@ -82,27 +88,43 @@ watch(model, () => {
     &>.input {
       --_padding-inline-start: 0.5em;
       --_padding-inline-end: 0.5em;
-      --_outline-alpha: 0;
 
       background-color: transparent;
       border: 0.0625rem solid var(--color-border);
       border-radius: var(--radius-md);
       font-weight: 300;
+      grid-column: var(--_grid-column);
       grid-row: 2;
       inline-size: 100%;
       min-inline-size: calc(var(--_padding-inline-start) + var(--_padding-inline-end) + 0.125rem + 1ch);
-      outline: 0.125rem solid rgb(from var(--color-accent) r g b / var(--_outline-alpha));
-      outline-offset: 0;
+      outline: none;
       padding-block: 0.5em;
       padding-inline: var(--_padding-inline-start) var(--_padding-inline-end);
       text-align: center;
-      transition-property: box-shadow, outline-color, outline-offset;
+      transition-property: box-shadow;
 
       &:focus-visible,
       &:has(~.input:focus-visible) {
+        box-shadow: var(--shadow-sm);
+      }
+    }
+
+    &>.outline {
+      --_outline-alpha: 0;
+
+      border-radius: var(--radius-md);
+      grid-column: 1 / -1;
+      grid-row: 2;
+      outline: 0.125rem solid rgb(from var(--color-accent) r g b / var(--_outline-alpha));
+      outline-offset: 0;
+      pointer-events: none;
+      transition-property: outline-color, outline-offset;
+    }
+
+    &:has(>.input:focus-visible) {
+      &>.outline {
         --_outline-alpha: 1;
 
-        box-shadow: var(--shadow-sm);
         outline-offset: 0.125rem;
       }
     }
