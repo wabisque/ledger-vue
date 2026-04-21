@@ -16,7 +16,7 @@ export default [
         meta: {
           transitions: {
             'auth:register': 'shift-left',
-            'auth:forgot_password': 'slide-out-left',
+            'auth:reset_password': 'push',
           },
         },
       },
@@ -31,13 +31,12 @@ export default [
         },
       },
       {
-        path: 'forgot-password',
-        name: 'auth:forgot_password',
-        component: () => import('@/views/ForgotPassword.vue'),
+        path: 'reset-password',
+        name: 'auth:reset_password',
+        component: () => import('@/views/ResetPasswordView.vue'),
         meta: {
           transitions: {
-            'auth:login': 'slide-in-right',
-            'auth:register': 'slide-in-right',
+            'auth:login': 'pop',
           },
         },
       },

@@ -7,36 +7,43 @@
 @property --color-bg-light {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-surface-light {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-border-light {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-text-light {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-mute-light {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-accent-light {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-complement-light {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 /* DARK COLORS */
@@ -44,36 +51,43 @@
 @property --color-bg-dark {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-surface-dark {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-border-dark {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-text-dark {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-mute-dark {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-accent-dark {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-complement-dark {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 /* COLORS */
@@ -81,56 +95,67 @@
 @property --color-bg {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-surface {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-border {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-text {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-mute {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-accent {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-complement {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-success {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-warning {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-danger {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 @property --color-info {
   syntax: "<color>";
   inherits: true;
+  initial-value: transparent;
 }
 
 /* BORDER RADII */
@@ -138,16 +163,19 @@
 @property --radius-sm {
   syntax: "<length-percentage>";
   inherits: true;
+  initial-value: 0;
 }
 
 @property --radius-md {
   syntax: "<length-percentage>";
   inherits: true;
+  initial-value: 0;
 }
 
 @property --radius-lg {
   syntax: "<length-percentage>";
   inherits: true;
+  initial-value: 0;
 }
 
 /* BOX SHADOW */
@@ -155,16 +183,19 @@
 @property --shadow-sm {
   syntax: "<shadow>";
   inherits: true;
+  initial-value: none;
 }
 
 @property --shadow-sm {
   syntax: "<shadow>";
   inherits: true;
+  initial-value: none;
 }
 
 @property --shadow-lg {
   syntax: "<shadow>";
   inherits: true;
+  initial-value: none;
 }
 
 @layer reset {

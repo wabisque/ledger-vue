@@ -1,42 +1,50 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
+import TextField from '@/components/TextField.vue';
+import TokenField from '@/components/TokenField.vue';
 import Button from '@/components/Button.vue';
 import Link from '@/components/Link.vue';
-import TextField from '@/components/TextField.vue';
 
 const form = reactive({
-  first_name: '',
-  last_name: '',
   email: '',
+  token: 'abc',
   password: '',
   password_confirmation: '',
 });
 </script>
 
 <template>
-  <form class="w-register-view" @submit.prevent>
-    <h1 class="heading">Register</h1>
+  <form class="w-reset-password-view" @submit.prevent>
+    <h1 class="heading">Reset Password</h1>
 
-    <TextField class="field" label="First Name*" autocomplete="off" v-model="form.first_name" />
-    <TextField class="field" label="Last Name*" autocomplete="off" v-model="form.last_name" />
     <TextField class="field" label="Email Address*" type="email" autocomplete="off" v-model="form.email" />
+
+    <TokenField class="field" label="Token*" v-model="form.token" />
+
+    <span class="resend">
+      You can request for another token:
+      <a href="javascript:void(0);" class="action">Now</a>
+    </span>
+
+    <span class="rule"></span>
+
     <TextField class="field" label="Password*" type="password" autocomplete="off" v-model="form.password" />
     <TextField class="field" label="Confirm Password*" type="password" autocomplete="off"
       v-model="form.password_confirmation" />
 
-    <Button class="submit" text="Register" submit />
+    <Button class="submit" text="Reset Password" submit />
 
     <span class="rule"></span>
 
     <div class="login">
-      Already have an account? <Link class="link" :to="{ name: 'auth:login' }">Login</Link>
+      <Link class="link" :to="{ name: 'auth:login' }">Login with your existing password!</Link>
     </div>
   </form>
 </template>
 
 <style>
 @layer source {
-  .w-register-view {
+  .w-reset-password-view {
     display: flex;
     flex-direction: column;
 
@@ -46,6 +54,23 @@ const form = reactive({
 
     &>.field+.field {
       margin-block-start: 0.5rem;
+    }
+
+    &>.resend {
+      color: var(--color-mute);
+      font-size: 0.875rem;
+      font-weight: 300;
+      margin-block-start: 0.25rem;
+      text-align: end;
+
+      &>.action {
+        font-weight: 500;
+        transition-property: color;
+
+        &:hover {
+          color: var(--color-accent);
+        }
+      }
     }
 
     &>.submit {

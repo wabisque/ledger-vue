@@ -12,12 +12,12 @@ const form = reactive({
 
 <template>
   <form class="w-login-view" @submit.prevent>
-    <h1 class="heading">Sign In</h1>
+    <h1 class="heading">Login</h1>
 
-    <TextField class="field" label="Email Address*" pointer="email" type="email" v-model="form.email" />
-    <TextField class="field" label="Password*" pointer="password" type="password" v-model="form.password" />
+    <TextField class="field" label="Email Address*" type="email" v-model="form.email" />
+    <TextField class="field" label="Password*" type="password" v-model="form.password" />
 
-    <Link class="forgot" :to="{ name: 'auth:forgot_password' }">Forgot your password?</Link>
+    <Link class="forgot" :to="{ name: 'auth:reset_password' }">Forgot your password?</Link>
 
     <Button class="submit" text="Login" submit />
 
@@ -48,6 +48,7 @@ const form = reactive({
       color: var(--color-mute);
       font-size: 0.875rem;
       font-weight: 500;
+      margin-block-start: 0.25rem;
       transition-property: color;
 
       &:hover {
@@ -68,6 +69,7 @@ const form = reactive({
     &>.register {
       color: var(--color-mute);
       font-size: 0.875rem;
+      font-weight: 300;
       text-align: center;
 
       &>.link {

@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { computed, useAttrs, type Attrs } from 'vue';
+import { computed, useAttrs, useTemplateRef, type Attrs } from 'vue';
 
 interface Props {
   label?: string,
-  pointer?: string,
   type?: 'text' | 'email' | 'password',
 }
 
@@ -11,10 +10,12 @@ const INPUT_ATTR_KEYS = [
   'autocomplete',
 ];
 
+defineOptions({ inheritAttrs: false });
 withDefaults(defineProps<Props>(), { type: 'text' });
 
-const model = defineModel();
+const model = defineModel<string>({ default: '' });
 const attrs = useAttrs();
+const inputRef = useTemplateRef('input');
 
 const generalAttrs = computed(() => {
   const result: Attrs = {};
@@ -26,6 +27,7 @@ const generalAttrs = computed(() => {
 
   return result;
 });
+
 const inputAttrs = computed(() => {
   const result: Attrs = {};
 
@@ -40,8 +42,8 @@ const inputAttrs = computed(() => {
 
 <template>
   <div class="w-text-field" v-bind="generalAttrs">
-    <label :for="pointer" class="label" v-if="label">{{ label }}</label>
-    <input :type="type" class="input" :id="pointer" v-model="model" v-bind="inputAttrs">
+    <label class="label" @click="inputRef?.focus();" v-if="label">{{ label }}</label>
+    <input :type="type" class="input" v-model="model" ref="input" v-bind="inputAttrs">
   </div>
 </template>
 
@@ -57,10 +59,12 @@ const inputAttrs = computed(() => {
       font-size: 0.75em;
       font-weight: 500;
       grid-area: label;
+      justify-self: start;
       margin-block-end: 0.25em;
       margin-inline-start: 0.75em;
       overflow: hidden;
       text-overflow: ellipsis;
+      user-select: none;
     }
 
     &>.input {
@@ -69,6 +73,7 @@ const inputAttrs = computed(() => {
       background-color: transparent;
       border: 0.0625rem solid var(--color-border);
       border-radius: var(--radius-md);
+      font-weight: 300;
       grid-area: input;
       outline: 0.125rem solid rgb(from var(--color-accent) r g b / var(--_outline-alpha));
       outline-offset: 0;

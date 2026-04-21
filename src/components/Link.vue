@@ -1,21 +1,11 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import { useLink, type RouterLinkProps } from 'vue-router';
 
-interface Props extends RouterLinkProps {
-  external?: boolean,
-}
+interface Props extends RouterLinkProps { }
 
-const props = withDefaults(defineProps<Props>(), { external: false });
+const props = defineProps<Props>();
 
-const { href, isActive, isExactActive, navigate } = props.external && typeof props.to == 'string'
-  ? {
-    href: props.to,
-    isActive: computed(() => false),
-    isExactActive: computed(() => false),
-    navigate: (e?: MouseEvent) => { },
-  }
-  : useLink(props);
+const { href, isActive, isExactActive, navigate } = useLink(props);
 </script>
 
 <template>
@@ -24,12 +14,3 @@ const { href, isActive, isExactActive, navigate } = props.external && typeof pro
     <slot />
   </a>
 </template>
-
-<style>
-@layer source {
-
-  .w-link {
-    color: inherit;
-  }
-}
-</style>

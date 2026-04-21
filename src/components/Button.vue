@@ -23,11 +23,13 @@ withDefaults(defineProps<Props>(), { submit: false, text: 'Button' });
     border-radius: var(--radius-md);
     color: var(--color-complement);
     cursor: pointer;
+    font-weight: 500;
     outline: 0.125rem solid rgb(from var(--color-accent) r g b / var(--_outline-alpha));
     outline-offset: 0;
     padding-block: 0.5rem;
     padding-inline: 1.25rem;
     transition-property: box-shadow, outline-color, outline-offset;
+    user-select: none;
 
     &>.text {
       overflow: hidden;
